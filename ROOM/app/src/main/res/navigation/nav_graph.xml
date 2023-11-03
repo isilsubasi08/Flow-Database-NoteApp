@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/noteFragment">
+
+    <fragment
+        android:id="@+id/noteFragment"
+        android:name="com.isilsubasi.roommvvmexample.fragments.NoteFragment"
+        android:label="fragment_note"
+        tools:layout="@layout/fragment_note" >
+        <action
+            android:id="@+id/action_noteFragment_to_saveorDeleteFragment"
+            app:destination="@id/saveorDeleteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/saveorDeleteFragment"
+        android:name="com.isilsubasi.roommvvmexample.fragments.SaveorDeleteFragment"
+        android:label="fragment_saveor_delete"
+        tools:layout="@layout/fragment_saveor_delete" >
+        <action
+            android:id="@+id/action_saveorDeleteFragment_to_noteFragment"
+            app:destination="@id/noteFragment" />
+
+        <argument android:name="Note"
+            android:defaultValue="@null"
+            app:argType="com.isilsubasi.roommvvmexample.model.Note"
+            app:nullable="true">
+
+        </argument>
+
+
+
+    </fragment>
+</navigation>
