@@ -1,4 +1,4 @@
-package com.isilsubasi.roommvvmexample.fragments
+package com.isilsubasi.roommvvmexample.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

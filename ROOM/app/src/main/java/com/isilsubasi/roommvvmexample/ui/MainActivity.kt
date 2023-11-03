@@ -1,4 +1,4 @@
-package com.isilsubasi.roommvvmexample.activities
+package com.isilsubasi.roommvvmexample.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

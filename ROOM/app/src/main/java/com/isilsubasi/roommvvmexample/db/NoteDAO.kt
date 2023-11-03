@@ -2,25 +2,16 @@ package com.isilsubasi.roommvvmexample.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.isilsubasi.roommvvmexample.model.NoteEntity
+import com.isilsubasi.roommvvmexample.utils.Contants.NOTE_TABLE
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NoteDAO {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(noteEntity : NoteEntity)
 
-    @Update
-    suspend fun update(noteEntity : NoteEntity)
-
-    @Query("DELETE FROM note_table")
-    suspend fun deleteAllNotes()
-
-    @Query("DELETE FROM note_table WHERE id= :id")
-    suspend fun deleteNoteById(id: Int)
-
-    @Query("SELECT * FROM note_table ORDER BY priority DESC" )
-    fun getAllNotes() : LiveData<List<NoteEntity>>
-
+    @Query("SELECT * FROM $NOTE_TABLE")
+    fun getAllNotes() : Flow<MutableList<NoteEntity>>
 
 }

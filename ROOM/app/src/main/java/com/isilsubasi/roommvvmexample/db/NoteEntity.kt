@@ -1,10 +1,11 @@
-package com.isilsubasi.roommvvmexample.model
+package com.isilsubasi.roommvvmexample.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.isilsubasi.roommvvmexample.utils.Contants.NOTE_TABLE
 
-@Entity(tableName = "note_table")
+@Entity(tableName = NOTE_TABLE)
 data class NoteEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "Id")
