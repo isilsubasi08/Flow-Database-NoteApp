@@ -118,6 +118,7 @@
         android:id="@+id/inner_fab"
         app:icon="@drawable/ic_round_add_24"
         app:iconTint="@color/white"
+        app:backgroundTint="@color/black"
         android:textColor="@color/white"
         android:text="Add Note">
 
