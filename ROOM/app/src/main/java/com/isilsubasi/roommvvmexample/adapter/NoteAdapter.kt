@@ -1,5 +1,6 @@
 package com.isilsubasi.roommvvmexample.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -24,13 +25,12 @@ class NoteAdapter @Inject constructor() : RecyclerView.Adapter<NoteAdapter.ViewH
         holder.setData(differ.currentList[position])
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount(): Int =differ.currentList.size
 
     inner class ViewHolder() : RecyclerView.ViewHolder(binding.root){
         fun setData(item : NoteEntity){
             binding.apply {
+                Log.e("isil",item.title)
                 noteItemTitle.text=item.title
                 noteContentItem.text=item.description
             }
