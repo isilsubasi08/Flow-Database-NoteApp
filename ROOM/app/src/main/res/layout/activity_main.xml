@@ -108,53 +108,21 @@
         </ImageView>
         <include layout="@layout/empty_list" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <LinearLayout
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:id="@+id/add_note_fab"
-        android:focusable="true"
-        android:clickable="true"
-        android:animateLayoutChanges="true"
-        android:orientation="horizontal"
-        android:clipToPadding="false"
-        android:background="@drawable/fab_btn_corner"
-        android:backgroundTint="@color/black"
-        android:layout_margin="16dp">
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|end"
+        android:id="@+id/inner_fab"
+        app:icon="@drawable/ic_round_add_24"
+        app:iconTint="@color/white"
+        android:textColor="@color/white"
+        android:text="Add Note">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/inner_fab"
-            android:src="@drawable/ic_round_add_24"
-            android:backgroundTint="@color/black"
-            app:elevation="0dp"
-            app:tint="@color/white"
-            app:fabSize="normal"
-            app:borderWidth="0dp"
-            app:useCompatPadding="false">
+    </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
 
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/chatFabText"
-            android:fontFamily="@font/google_sans_regular"
-            android:text="@string/add_note"
-            android:textColor="@color/white"
-            android:paddingStart="0dp"
-            android:paddingEnd="20dp"
-            android:layout_gravity="center_vertical"
-            >
-
-        </TextView>
-
-
-
-
-    </LinearLayout>
 
 
 
