@@ -2,9 +2,11 @@ package com.isilsubasi.roommvvmexample.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.graphics.toColorInt
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.snackbar.Snackbar
@@ -12,6 +14,7 @@ import com.isilsubasi.roommvvmexample.R
 import com.isilsubasi.roommvvmexample.databinding.ActivityDetailsBinding
 import com.isilsubasi.roommvvmexample.db.NoteEntity
 import com.isilsubasi.roommvvmexample.viewmodel.DatabaseViewModel
+import com.thebluealliance.spectrum.SpectrumPalette
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -62,23 +65,24 @@ class DetailsActivity : AppCompatActivity() {
         }
 
 
+
+
     }
 
 
     private fun openBottomSheetDialog(){
 
         val bottomSheetDialog = BottomSheetDialog(this,R.style.BottomSheetStyle)
-
         val bottomSheetView=LayoutInflater.from(this).inflate(
             R.layout.bottom_sheet_layout,
             binding.root.findViewById(R.id.bottomSheetParent) as? MaterialCardView
         )
-
-
         bottomSheetDialog.setContentView(bottomSheetView)
         bottomSheetDialog.show()
-
-
+        val spectrumPalette=bottomSheetView.findViewById<SpectrumPalette>(R.id.colorPicker)
+        spectrumPalette.setOnColorSelectedListener { color ->
+           binding.noteContentFragmentParent.setBackgroundColor(color)
+        }
 
 
     }
