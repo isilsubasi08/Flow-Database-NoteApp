@@ -2,9 +2,11 @@ package com.isilsubasi.roommvvmexample.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.snackbar.Snackbar
 import com.isilsubasi.roommvvmexample.R
 import com.isilsubasi.roommvvmexample.databinding.ActivityDetailsBinding
@@ -56,9 +58,29 @@ class DetailsActivity : AppCompatActivity() {
         }
 
         binding.fabColorPick.setOnClickListener {
-
+            openBottomSheetDialog()
         }
 
 
     }
+
+
+    private fun openBottomSheetDialog(){
+
+        val bottomSheetDialog = BottomSheetDialog(this,R.style.BottomSheetStyle)
+
+        val bottomSheetView=LayoutInflater.from(this).inflate(
+            R.layout.bottom_sheet_layout,
+            binding.root.findViewById(R.id.bottomSheetParent) as? MaterialCardView
+        )
+
+
+        bottomSheetDialog.setContentView(bottomSheetView)
+        bottomSheetDialog.show()
+
+
+
+
+    }
+
 }
