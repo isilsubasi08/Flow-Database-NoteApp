@@ -3,6 +3,8 @@ package com.isilsubasi.roommvvmexample.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.content.ContentProviderCompat.requireContext
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.isilsubasi.roommvvmexample.R
 import com.isilsubasi.roommvvmexample.databinding.ActivityDetailsBinding
@@ -50,6 +52,10 @@ class DetailsActivity : AppCompatActivity() {
                 finish()
             }
 
+
+        }
+
+        binding.fabColorPick.setOnClickListener {
 
         }
 
