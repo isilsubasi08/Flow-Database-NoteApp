@@ -33,6 +33,8 @@ class NoteAdapter @Inject constructor() : RecyclerView.Adapter<NoteAdapter.ViewH
                 Log.e("isil",item.title)
                 noteItemTitle.text=item.title
                 noteContentItem.text=item.description
+                noteItemLayoutParent.setBackgroundColor(item.color)
+                noteDate.text=item.date
             }
         }
 

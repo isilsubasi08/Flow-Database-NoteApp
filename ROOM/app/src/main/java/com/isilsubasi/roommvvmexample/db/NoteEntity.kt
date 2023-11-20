@@ -17,8 +17,11 @@ data class NoteEntity(
     @ColumnInfo(name = "description")
     var description: String="",
 
-    @ColumnInfo(name = "priority")
-    var priority: Int=0
+    @ColumnInfo(name = "date")
+    var date: String="",
+
+    @ColumnInfo(name = "color")
+    var color: Int=-1
 )
 
 //Entity -> Veri tabanındaki tablo adını belirtiyoruz.

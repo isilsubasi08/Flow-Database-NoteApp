@@ -1,9 +1,12 @@
 package com.isilsubasi.roommvvmexample.ui
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.graphics.toColorInt
@@ -15,7 +18,11 @@ import com.isilsubasi.roommvvmexample.databinding.ActivityDetailsBinding
 import com.isilsubasi.roommvvmexample.db.NoteEntity
 import com.isilsubasi.roommvvmexample.viewmodel.DatabaseViewModel
 import com.thebluealliance.spectrum.SpectrumPalette
+import com.yahiaangelo.markdownedittext.MarkdownEditText
+import com.yahiaangelo.markdownedittext.MarkdownStylesBar
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -31,14 +38,17 @@ class DetailsActivity : AppCompatActivity() {
     private var noteId = 0
     private var noteTitle =""
     private var noteDescription=""
+    private var noteColor=-1
+    private var noteDate=""
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
-
+        noteDate=getCurrentDate()
         binding.saveNote.setOnClickListener {
             noteTitle=binding.etTitle.text.toString()
             noteDescription=binding.etNoteContent.text.toString()
@@ -50,6 +60,8 @@ class DetailsActivity : AppCompatActivity() {
                 entity.Id=noteId
                 entity.title=noteTitle
                 entity.description=noteDescription
+                entity.color=noteColor
+                entity.date=noteDate
 
                 viewModel.saveNote(entity)
                 binding.etTitle.setText("")
@@ -64,12 +76,25 @@ class DetailsActivity : AppCompatActivity() {
             openBottomSheetDialog()
         }
 
+        binding.etNoteContent.setOnTouchListener { view, motionEvent ->
+            when (motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    binding.bottomBar.visibility = View.VISIBLE
+                    val markdownEditText = findViewById<MarkdownEditText>(R.id.etNoteContent)
+                    val stylesBar = findViewById<MarkdownStylesBar>(R.id.styleBar)
+                    markdownEditText.setStylesBar(stylesBar)
+
+                }
+            }
+
+            return@setOnTouchListener false
+        }
+
+        binding.lastEdited.text=getCurrentDate()
 
 
 
-    }
-
-
+        }
     private fun openBottomSheetDialog(){
 
         val bottomSheetDialog = BottomSheetDialog(this,R.style.BottomSheetStyle)
@@ -81,10 +106,21 @@ class DetailsActivity : AppCompatActivity() {
         bottomSheetDialog.show()
         val spectrumPalette=bottomSheetView.findViewById<SpectrumPalette>(R.id.colorPicker)
         spectrumPalette.setOnColorSelectedListener { color ->
-           binding.noteContentFragmentParent.setBackgroundColor(color)
+            noteColor=color
+            binding.noteContentFragmentParent.setBackgroundColor(color)
         }
 
 
     }
+    @SuppressLint("SimpleDateFormat")
+    private fun getCurrentDate(): String {
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy")
+        return dateFormat.format(calendar.time)
+    }
 
-}
+    }
+
+
+
+
